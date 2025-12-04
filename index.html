@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lulu & Pix – Interactive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="scene">
+    <!-- Lulu image with eye overlay -->
+    <div id="lulu">
+      <svg class="lulu-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet">
+        <image href="lulu.png" x="0" y="0" width="1000" height="1000" style="pointer-events: visiblePainted" />
+      </svg>
+  <button id="lulu-hit" aria-label="Lulu" title="Lulu"></button>
+    </div>
+
+    <!-- Pix (draggable, floating) -->
+    <div id="pix" draggable="false" aria-label="Pix" role="img">
+      <div class="pix-body"></div>
+    </div>
+
+    
+
+  </div>
+
+  <!-- Birthday flip card modal: appears after 8 Pix clicks -->
+  <div id="card-modal" hidden>
+    <div class="modal-overlay">
+      <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+        <div class="flipper">
+          <div class="front">
+            <div class="frontcontent text-center">
+              <br><br><br>
+              <img src="https://media.tumblr.com/78a9d3eae59a2a3ed8531b482bdc5a4f/tumblr_inline_mgzkontwjP1rxsw83.gif" alt="" />
+              <br><br>
+              <img src="hehe.jpg" alt="Lulu" style="width: 200px; height: auto;" />
+              <br><br>
+              <p>Happy Birthday to the love of my life!</p>
+            </div>
+          </div>
+          <div class="back">
+            <br>
+            <div class="backheader text-center">
+              <p>You're the best song</p>
+            </div>
+            <div class="backcontent text-center">
+              <p id="typing-text"></p>
+              <br>
+              <div class="polaroid" id="love-photo" style="opacity: 0; transition: opacity 1s ease;">
+                <img src="us.jpg" alt="Us" />
+                <div class="polaroid-caption">love of my life</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button id="card-close" class="card-close">×</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

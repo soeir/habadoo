@@ -1,0 +1,274 @@
+/* Basic reset */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Fredoka', system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background: #fff; }
+
+#scene {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(#f7fbff, #e6f0ff);
+}
+
+/* title removed */
+
+/* Lulu positioned via PNG with eye overlay */
+#lulu {
+  position: absolute;
+  left: 8vw;
+  bottom: 6vh;
+  width: clamp(680px, 48vw, 980px);
+  pointer-events: auto; /* clickable */
+}
+.lulu-svg { display: block; width: 100%; height: auto; pointer-events: none; }
+#lulu-hit {
+  position: absolute;
+  left: 24%;
+  top: 6%;
+  width: 52%;
+  height: 88%;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+#lulu-hit:focus { outline: none; }
+#lulu-hit:active { outline: none; }
+.lulu-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+/* eyes removed */
+
+/* Pix */
+#pix {
+  --size: clamp(360px, 28vw, 520px);
+  position: absolute;
+  left: 55vw; top: 12vh;
+  width: var(--size); height: var(--size);
+  cursor: grab;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+}
+#pix.dragging { cursor: grabbing; }
+.pix-body {
+  position: absolute; inset: 0;
+  background: url('pix.png') center / cover no-repeat;
+  border-radius: 0;
+  border: none;
+}
+/* wings removed */
+
+/* flutter removed */
+
+/* removed pix-face; using provided image */
+
+/* Floating motion */
+@keyframes floaty {
+  from { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  to { transform: translateY(0); }
+}
+#pix { animation: floaty 3.6s ease-in-out infinite; }
+
+/* Draggable tether line (optional visual) */
+#tether {
+  position: absolute;
+  width: 0; height: 0;
+}
+
+
+/* Birthday flip card modal */
+#card-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+}
+#card-modal[hidden] { display: none; }
+
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Flip card styles from a.css */
+.flip-container {
+  perspective: 1000px;
+}
+.flip-container:hover .flipper, .flip-container.hover .flipper {
+  transform: rotateY(180deg);
+}
+.flip-container, .front, .back {
+  width: 600px;
+  height: 750px;
+  background-color: white;
+}
+.back {
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+  box-shadow: 
+    inset 0 0 30px rgba(255,255,255,0.3),
+    inset 0 0 80px rgba(173,216,230,0.2);
+}
+.flipper {
+  transition: 0.7s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+.front, .back {
+  backface-visibility: hidden;
+  position: absolute;
+}
+.front {
+  z-index: 2;
+  transform: rotateY(0deg);
+  border-style: outset;
+  border-width: 2px;
+  box-shadow: 10px 10px 5px #888888;
+}
+.back {
+  transform: rotateY(180deg);
+  border-style: outset;
+  border-width: 1px;
+  box-shadow: 10px 10px 5px #888888;
+}
+.frontcontent {
+  font-family: 'Pacifico', cursive;
+}
+.backheader {
+  font-family: 'Pacifico', cursive;
+  font-size: 40px;
+  text-shadow: 
+    0 2px 4px rgba(0,0,0,0.3),
+    0 0 10px rgba(255,255,255,0.8),
+    0 0 20px rgba(255,255,255,0.4);
+  color: #2c3e50;
+}
+.backcontent {
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
+  margin: 20px;
+  text-align: left;
+  text-shadow: 
+    0 1px 2px rgba(0,0,0,0.2),
+    0 0 8px rgba(255,255,255,0.6);
+  color: #34495e;
+}
+.text-center { text-align: center; }
+
+.card-close {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  z-index: 1001;
+}
+.card-close:hover { background: #ff5252; }
+
+/* Typing animation */
+#typing-text {
+  min-height: 400px;
+}
+#typing-text::after {
+  content: '|';
+  animation: blink 1s infinite;
+  display: var(--cursor, inline);
+}
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Polaroid effect */
+.polaroid {
+  background: white;
+  padding: 10px 10px 50px 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3), 0 6px 20px rgba(0,0,0,0.15);
+  transform: rotate(-2deg);
+  margin: 10px auto;
+  width: fit-content;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+.polaroid:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+.polaroid img {
+  width: 200px;
+  height: auto;
+  display: block;
+  border-radius: 2px;
+}
+.polaroid-caption {
+  text-align: center;
+  font-family: 'Pacifico', cursive;
+  font-size: 14px;
+  color: #555;
+  margin-top: 10px;
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  right: 0;
+}
+
+/* Floating card animation */
+.flip-container {
+  animation: gentleFloat 6s ease-in-out infinite;
+}
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Sparkle effects */
+.modal-overlay::before {
+  content: '✨';
+  position: absolute;
+  top: 15%;
+  left: 10%;
+  font-size: 20px;
+  animation: sparkle 3s ease-in-out infinite;
+}
+.modal-overlay::after {
+  content: '💫';
+  position: absolute;
+  top: 20%;
+  right: 15%;
+  font-size: 18px;
+  animation: sparkle 4s ease-in-out infinite 1s;
+}
+@keyframes sparkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Additional sparkles */
+.flip-container::before {
+  content: '💕';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 16px;
+  animation: sparkle 2.5s ease-in-out infinite 0.5s;
+  z-index: 10;
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+  #lulu { left: 4vw; }
+  .title { right: 4vw; }
+  .flip-container, .front, .back { 
+    width: 90vw; 
+    height: 80vh; 
+  }
+}
